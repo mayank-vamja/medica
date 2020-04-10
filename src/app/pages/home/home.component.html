@@ -1,0 +1,34 @@
+<div class="row position-fixed fixed-top home-wrapper">
+  <div class="col-md-4 d-none d-md-block d-lg-block d-xl-block sidebar-wrapper">
+    <app-news-list></app-news-list>
+  </div>
+  <div class="col-md-8 chats-wrapper d-flex flex-column flex-end justify-content-end">
+      <div id="chats" class="chats">
+        <ul type="none" class="p-0">
+          <li *ngFor="let obj of allMessages">
+            <app-chat-bubble [message]="obj.message" [from]="obj.from" [date]="obj.date"></app-chat-bubble>
+          </li>
+        </ul>
+        <div *ngIf="allMessages.length === 0">
+          <div class="card m-3" style="width: 70%">
+            <img style="height: 200px; object-fit: contain;" src="../../../assets/images/bg_1.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Hello there !!</h5>
+              <p class="card-text">I'm here to help you with medical symptoms informations. This project is under development. So, results given by memight not be accurate. But feel free to try it out. Click Below button to get started.</p>
+              <h5>Just type <b>#</b> anytime to see suggestion</h5>
+              <button (click)="getStarted()" class="btn btn-primary">Get Started</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chat-input-wrapper p-2 ml-2 mr-2">
+        <div id="autocomplete-menu"></div>
+        <form [formGroup]="queryForm" (ngSubmit)="sendData()">
+          <div id="query-form" class="d-flex flex-row flex-nowrap">
+            <input id="query" class="pl-3" type="text" formControlName="query" placeholder="Type here" autocomplete="off">
+            <button id="send-btn" type="submit"><img id="send-btn-img" src="../../../assets/images/send.svg"></button>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+@import "../../../theme.scss";
+
+.news-list {
+  padding: 0;
+  list-style-type: none;
+  .news-card {
+    cursor: pointer;
+    overflow: hidden;
+    margin: 10px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.08);
+
+    .news-image {
+      width: 100px;
+      min-height: 100px;
+      background-size: cover;
+      background-position: center;
+    }
+    p{
+      margin: 0;
+      line-height: 1.3;
+    }
+    .news-info {
+      width: calc(100% - 100px);
+      padding: 5px;
+      .news-title {
+        font-size: 14px;
+      }
+      .news-date {
+        font-size: smaller;
+        color: grey;
+      }
+    }
+  }
+}
+
+.news-loader {
+  background-color: rgba(255,255,255, 0.4);
+}
+
+.spinner-grow {
+  color: $primaryColor;
+  margin: auto;
+  width: 5rem;
+  height: 5rem;
+}

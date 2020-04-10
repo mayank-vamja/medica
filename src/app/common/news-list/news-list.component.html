@@ -1,0 +1,31 @@
+<div>
+  <div id="news-list-wrapper" clas="news-wrapper position-relative">
+    <ul class="news-list position-absolute">
+      <li *ngFor="let news of newsArticles">
+        <div class="news-card d-flex flex-row justify-content-start">
+          <!-- <img [src]="news.urlToImage" class="news-image"> -->
+          <div class="news-image" [ngStyle]='{"background-image": news.urlToImage }'></div>
+          <div class="news-info">
+            <p class="news-title">{{ news.title }}</p>
+            <p class="news-date text-right">{{ news.publishedAt }}</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <div *ngIf="newsArticles.length === 0 && !isLoadingNews"
+      class="news-loader position-absolute text-center d-flex flex-column justify-content-center top-0 h-100 w-100">
+      <div class="text-center">
+        <p>News can not be loaded.</p>
+        <p>Make sure you have good internet connection.</p>
+        <p>Try after sometimw or click below button.</p>
+        <p><button class="btn btn-lg btn-primary" (click)="fetchNews()">Retry</button></p>
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    <div *ngIf="isLoadingNews" class="news-loader position-absolute text-center d-flex flex-column justify-content-center top-0 h-100 w-100">
+      <div class="spinner-grow" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </div>
+</div>

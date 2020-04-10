@@ -1,0 +1,7 @@
+<div class="chat-bubble-wrapper d-flex " [ngClass]="from === 'USER' ? 'justify-content-end' : 'justify-content-start'">
+  <div class="chat-bubble "  [ngClass]="from === 'USER' ? 'chat-arrow-right' : 'chat-arrow-left'">
+    <p class="chat-username">{{ userText }}</p>
+    <p class="chat-message">{{ message }}</p>
+    <p class="text-right chat-date">{{ dateText }}</p>
+  </div>
+</div>

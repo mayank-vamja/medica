@@ -1,0 +1,34 @@
+<div class="full-wh-container fixed-top">
+  <div class="bg-animated row w-100 vh-100 overflow-auto">
+    <div class="signup-content col-sm-6 h-100 text-white d-flex flex-column justify-content-center text-center p-5">
+      <img class="" src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
+      <h4>Sign Up for free</h4>
+      <p>You are few steps to get help of Medica!!!</p>
+      <i class="fa fa-angle-double-down fa-4x d-block d-sm-none"></i>
+    </div>
+    <div class="col-sm-6 h-100 d-flex flex-column justify-content-center">
+      <div id="signUpForm" class="w-100 p-4">
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+          <div class="form-title text-center pl-3 pr-3 pt-2 mb-3"><h2 class="text-primary"> Sign up details </h2></div>
+          <div class="form-group d-flex flex-column-reverse mr-3 ml-3">
+            <small *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched" class="text-danger pl-3">Invalid email address</small>
+            <input type="email" class="form-control" formControlName="email" id="email" placeholder="Enter email">
+            <label for="email">Email address</label>
+          </div>
+          <div class="form-group d-flex flex-column-reverse mr-3 ml-3">
+            <small *ngIf="!signupForm.get('password').valid && signupForm.get('password').touched" class="text-danger pl-3">Invalid password</small>
+            <input type="password" class="form-control" formControlName="password" id="password"placeholder="Password">
+            <label for="password">Password</label>
+          </div>
+          <div class="form-group d-flex flex-column-reverse mr-3 ml-3">
+            <small *ngIf="!signupForm.get('confirm-password').valid && signupForm.get('confirm-password').touched" class="text-danger pl-3">Invalid confirm password</small>
+            <small *ngIf="signupForm.get('password').valid && signupForm.get('confirm-password').valid && signupForm.errors?.passwordMissMatch && signupForm.get('password').touched && signupForm.get('confirm-password').touched" class="text-danger pl-3">Password and Confirm Password fields don't match.</small>
+            <input type="password" class="form-control" formControlName="confirm-password" id="confirm-password" placeholder="Confirm Password">
+            <label for="confirm-password">Confirm Password</label>
+          </div>
+          <p class="text-center"><button type="submit shadow-md" class="btn btn-lg btn-primary">Submit</button></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

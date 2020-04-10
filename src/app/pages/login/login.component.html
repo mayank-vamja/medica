@@ -1,0 +1,26 @@
+<div class="full-wh-container fixed-top">
+  <div class="bg-animated row w-100 vh-100 overflow-auto justify-content-center">
+    <div class="col-sm-6 h-100 d-flex flex-column justify-content-center">
+      <div id="loginForm" class="w-100 p-2 m-2">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-title text-center pl-3 pr-3 pt-2 mb-3">
+            <h2 class="text-primary"> Login </h2>
+          </div>
+          <div class="form-group d-flex flex-column-reverse mr-3 ml-3">
+            <small *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched"
+              class="text-danger pl-3">Invalid email address</small>
+            <input type="email" class="form-control" formControlName="email" id="email" placeholder="Enter email">
+            <label for="email">Email address</label>
+          </div>
+          <div class="form-group d-flex flex-column-reverse mr-3 ml-3">
+            <small *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched"
+              class="text-danger pl-3">Invalid password</small>
+            <input type="password" class="form-control" formControlName="password" id="password" placeholder="Password">
+            <label for="password">Password</label>
+          </div>
+          <p class="text-center"><button type="submit shadow-md" class="btn btn-lg btn-primary">Login</button></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,8 +3,18 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
-};
+         production: false,
+         firebase: {
+           apiKey: "AIzaSyA9H_te0-vqzMM3tDUWZDG-75kGjU4GSF0",
+           authDomain: "medicaanywhere.firebaseapp.com",
+           databaseURL: "https://medicaanywhere.firebaseio.com",
+           projectId: "medicaanywhere",
+           storageBucket: "medicaanywhere.appspot.com",
+           messagingSenderId: "340114219827",
+           appId: "1:340114219827:web:e7499e436ea6c63a625446",
+           measurementId: "G-TB494SYWJ0"
+         }
+       };
 
 /*
  * For easier debugging in development mode, you can import the following file
