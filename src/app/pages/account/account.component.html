@@ -1,0 +1,71 @@
+<div class="profile-header-bg">
+</div>
+<div class="container">
+  <div class="m-2 profile-wrapper">
+    <div class="profile-image-container">
+      <img class="profile-image" [src]="profilePictureSrc" >
+      <img class="profile-image-edit" src="../../../assets/images/ic-camera.svg" data-toggle="modal" data-target="#imageUploadModal">
+    </div>
+    <h4 class="text-center profile-name">
+      <input #nameBox class="" [value]="name" [disabled]="isReadOnly" 
+      (keyup.enter)="updateName(nameBox.value)"
+      (blur)="updateName(nameBox.value)">
+      <img [ngStyle]="!isReadOnly && {'visibility':'hidden'}" (click)="enableEditName(true)" src="../../../assets/images/ic-edit.svg" class="rounded-border-img">
+    </h4>
+    <div class="text-center">
+      <div class="chip">
+        <img src="../../../assets/images/ic_email.svg">
+        <span>{{firestore.email}}</span>
+      </div>
+    </div>
+    <ul class="list-group list-group-flush mt-3">
+      <li class="list-group-item">
+        Date of birth
+        <span class="float-right">{{dob}}
+          <input class="d-none" [max]="maxDate" [matDatepicker]="dobPicker" (dateChange)="dobChange($event)">
+          <mat-datepicker touchUi #dobPicker></mat-datepicker>
+          <img (click)="openDatePicker(dobPicker)" src="../../../assets/images/ic-edit.svg" class="ml-2 float-right rounded-border-img">
+        </span>
+      </li>
+      <li class="list-group-item">
+        Gender 
+        <span class="float-right">{{gender}}
+          <img src="../../../assets/images/ic-edit.svg" class="ml-2 float-right rounded-border-img dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a *ngIf="gender !== 'Male'" class="dropdown-item" (click)="changeGender('Male')">Male</a>
+            <a *ngIf="gender !== 'Female'" class="dropdown-item" (click)="changeGender('Female')">Female</a>
+            <a *ngIf="gender !== 'Other'" class="dropdown-item" (click)="changeGender('Other')">Other</a>
+          </div>
+        </span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="imageUploadModal" tabindex="-1" role="dialog" aria-labelledby="imageUpload"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-primary" id="imageUpload">Select Profile Picture</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="custom-file mb-3">
+          <input (change)="imageSelected($event)" type="file" class="custom-file-input" id="inputGroupFile" accept="image/*">
+          <label class="custom-file-label" for="inputGroupFile">Choose image</label>
+        </div>
+        <div id="selected-image"></div>
+          <!-- <img id="cropped-image" > -->
+          <p class="text-center">
+            <button class="btn btn-primary btn-lg" (click)="updateImage()" data-dismiss="modal" aria-label="Close">Update</button>
+          </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-loader *ngIf="isLoading"></app-loader>

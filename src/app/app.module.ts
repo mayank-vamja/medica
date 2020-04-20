@@ -1,4 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from "@angular/core";
 
 import { AppRoutingModule } from "./app-routing.module";
@@ -18,6 +19,10 @@ import { environment } from "../environments/environment";
 import { ChatBubbleComponent } from './common/chat-bubble/chat-bubble.component';
 import ApiMedicInterceptor from './api/api-medic-interceptor.service';
 import { NewsListComponent } from './common/news-list/news-list.component';
+import { AccountComponent } from './pages/account/account.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from "@angular/material/core";
+import { LoaderComponent } from './common/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +33,8 @@ import { NewsListComponent } from './common/news-list/news-list.component';
     SignupComponent,
     ChatBubbleComponent,
     NewsListComponent,
+    AccountComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +45,9 @@ import { NewsListComponent } from './common/news-list/news-list.component';
     AngularFireAuthModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     // {

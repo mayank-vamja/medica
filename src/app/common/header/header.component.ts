@@ -24,6 +24,9 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.af.signOut().then(success => this.isLoggedIn = false).catch(err => console.log(err));
+    this.af.signOut().then(success => {
+      this.isLoggedIn = false;
+      this.router.navigateByUrl("/login");
+    }).catch(err => console.log(err));
   }
 }

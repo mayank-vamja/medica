@@ -5,11 +5,18 @@
   <div class="col-md-8 chats-wrapper d-flex flex-column flex-end justify-content-end">
       <div id="chats" class="chats">
         <ul type="none" class="p-0">
-          <li *ngFor="let obj of allMessages">
+          <li *ngFor="let obj of chat.allMessages">
             <app-chat-bubble [message]="obj.message" [from]="obj.from" [date]="obj.date"></app-chat-bubble>
           </li>
+          <li *ngIf="chat.isGettingMessage">
+            <div class="wave">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </li>
         </ul>
-        <div *ngIf="allMessages.length === 0">
+        <div *ngIf="chat.allMessages.length === 0">
           <div class="card m-3" style="width: 70%">
             <img style="height: 200px; object-fit: contain;" src="../../../assets/images/bg_1.jpg" class="card-img-top" alt="...">
             <div class="card-body">
@@ -32,3 +39,6 @@
       </div>
   </div>
 </div>
+
+<app-loader *ngIf="isLoading"></app-loader>
+<!-- <app-loader></app-loader> -->

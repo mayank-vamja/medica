@@ -9,14 +9,14 @@
     background: url("/assets/images/bg_2.png"),
       linear-gradient(to bottom, $primaryColor, $secondaryColor);
     background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
     position: fixed;
     top: 0;
     z-index: -1;
     margin: 0;
     padding-top: 56px;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
     position: fixed;
   }
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="19px" height="19px" viewBox="0 0 19 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 60 (88103) - https://sketch.com -->
+    <title>symbol/expand</title>
+    <desc>Created with Sketch.</desc>
+    <g id="CheckIns--Manager" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="CheckIns_MyTeam" transform="translate(-862.000000, -2444.000000)">
+            <g id="Comment-Box-Copy-2" transform="translate(159.000000, 2370.000000)">
+                <g id="symbol/expand" transform="translate(712.500000, 83.500000) rotate(-315.000000) translate(-712.500000, -83.500000) translate(704.000000, 75.000000)">
+                    <circle id="Oval" stroke="#B8B4CC" fill="#FFFFFF" fill-rule="evenodd" cx="8.5" cy="8.5" r="8.5"></circle>
+                    <polygon id="+" stroke="#B4B0C8" fill="#B4B0C8" fill-rule="nonzero" points="8.832 11.76 8.832 8.912 11.68 8.912 11.68 7.888 8.832 7.888 8.832 5.04 7.808 5.04 7.808 7.888 4.96 7.888 4.96 8.912 7.808 8.912 7.808 11.76"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

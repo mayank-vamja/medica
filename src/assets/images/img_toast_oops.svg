@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="41px" height="41px" viewBox="0 0 41 41" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61 (89581) - https://sketch.com -->
+    <title>Group 2</title>
+    <desc>Created with Sketch.</desc>
+    <g id="CheckIns---User" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="CheckIns_Employee_Current_After_Submission" transform="translate(-1126.000000, -238.000000)" fill="#F07575">
+            <g id="success-copy" transform="translate(1110.000000, 222.000000)">
+                <g id="Group" transform="translate(16.000000, 16.000000)">
+                    <g id="Group-2">
+                        <circle id="Oval" fill-opacity="0.135434878" cx="20.5" cy="20.5" r="20.5"></circle>
+                        <path d="M20.5,14 C19.875,14 19.25,14.6052189 19.25,15.3325096 L19.5,21.3345854 C19.5,21.8922606 20,22.3330039 20.5,22.3330039 C21.125,22.3330039 21.5,21.8922606 21.5,21.3345854 L21.75,15.3325096 C21.75,14.6052189 21.25,14 20.5,14 Z M19,25.4991598 C19,24.6716418 19.75,23.9996046 20.5,23.9996046 C21.25,23.9996046 22,24.6716418 22,25.4991598 C22,26.3279628 21.25,27 20.5,27 C19.75,27 19,26.3279628 19,25.4991598 Z" id="Shape" stroke="#F07575" stroke-width="0.799999952"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
