@@ -21,49 +21,52 @@ const SERVER_ERROR_MSG = "I'm getting errro from server. Please try again or vis
 })
 export class ChatService {
 
+  isAdult:boolean = true;
+  yearOfBirth: string = "2000";
+  gender: string = "Male";
   tribute: Tribute<any>;
   allMessages: Array<Message> = [];
   isGettingMessage: boolean = false;
   autocomplete: Array<any> = features;
   onChange: Subject<boolean> = new Subject<boolean>();
   onError: Subject<any> = new Subject<any>();
+  isLoading: boolean = false;
   chatSubscription;
 
   constructor(private api: ApiMedicService, private firestore: FirebaseFirestore) {
+    this.isLoading = true;
+    firestore.getUserData();
     this.chatSubscription = firestore.onGetUserData.subscribe(received => {
+      this.isLoading = false;
+      if(!firestore.user) return;
       if (firestore.user.chats && this.allMessages.length === 0) 
         this.allMessages = firestore.user.chats;
+      this.isAdult = firestore.user.isAdult;
+      this.yearOfBirth = firestore.user.yearOfBirth;
+      this.gender = firestore.user.gender;
       this.onChange.next(true);
-    }, err => {
-      console.log("CHAT SERVICE : ",err);
-      this.onChange.next(true);
-    });
+    }, console.error);
   }
 
   sendMedicaMessage = (message: string) => {
     this.allMessages = [...this.allMessages, {message, from: "MEDICA", date: new Date()}];
-    // this.firestore.updateData({chats:this.allMessages});
     this.firestore.updateChats(this.allMessages);
     this.onChange.next(true);
   }
 
   sendUserMessage = (message: string) => {
     this.allMessages = [...this.allMessages, { message, from: "USER", date: new Date() }]
-    // this.firestore.updateData({ chats: this.allMessages });
     this.firestore.updateChats(this.allMessages);
     this.onChange.next(true);
   }
 
   dispatch(item) {
-    /*********************************************
-     * FAKE DATA TO START WITH                   *
-     * TODO add fields in firebase for real data *
-     *********************************************/
-    let yearOfBirth = "1999";
-    let gender = "male";
-    let selectorStatus = "man";
-    /*********************************************/
-
+    let yearOfBirth = this.yearOfBirth;
+    let gender = this.gender.toLowerCase();
+    let selectorStatus = this.isAdult ? 
+      gender === "male" ? "man" : "woman" :
+      gender === "male" ? "boy" : "girl";
+      
     let token = localStorage.getItem("token");
     let language = "en-gb";
 
@@ -132,10 +135,14 @@ export class ChatService {
               name: i.Name,
               value: i.ID,
             }));
-            this.autocomplete = [...newAutocomplete];
-            this.sendMedicaMessage("Which symptoms do you find ?");
-            this.sendMedicaMessage("Search through the list by typing # as always. Go ahead and tell me.");
-            this.initializeAutocomplete(this.autocomplete);
+            if(newAutocomplete.length <= 0) {
+              this.dispatch({key: "LOCATION_SYMPTOMS", name: "All Symptoms", value: 0})
+            } else {
+              this.autocomplete = [...newAutocomplete];
+              this.sendMedicaMessage("Which symptoms do you find ?");
+              this.sendMedicaMessage("Search through the list by typing # as always. Go ahead and tell me.");
+              this.initializeAutocomplete(this.autocomplete);
+            }
           }, err => {
               this.isGettingMessage = false;
               this.sendMedicaMessage(SERVER_ERROR_MSG);

@@ -20,7 +20,9 @@ export class NewsListComponent implements OnInit {
   newsArticles: Article[] = [];
   isLoadingNews: boolean = false;
 
-  constructor(private news: NewsApiService, private ref: ChangeDetectorRef) { }
+  constructor(private news: NewsApiService, private ref: ChangeDetectorRef) {
+    this.fetchNews();
+  }
 
   fetchNews() {
     this.isLoadingNews = true;
@@ -41,7 +43,5 @@ export class NewsListComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {
-    this.fetchNews();
-  }
+  ngOnInit(): void { }
 }

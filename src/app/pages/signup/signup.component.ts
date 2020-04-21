@@ -26,17 +26,11 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.signupForm);
     if(this.signupForm.valid) {
       let email = this.signupForm.value.email;
       let password = this.signupForm.value.password;
       this.af.createUserWithEmailAndPassword(email, password).then(success => {
-        console.log("USER CREATED SUCCESSFULLY");
-        console.log(this.af);
-      }).catch(err => {
-        console.log("ERROR OCCURED : ",err);
-        
-      })
+      }).catch(console.error)
     }
   }
 

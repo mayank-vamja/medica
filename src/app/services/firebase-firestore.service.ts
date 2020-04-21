@@ -17,8 +17,8 @@ export class FirebaseFirestore {
     name: "",
     birthdate: "",
     profilePicture: "",
-    yearOfBirth: "1999",
-    gender: "Male",
+    yearOfBirth: "",
+    gender: "",
     isAdult: true,
     chats: []
   };
@@ -27,36 +27,34 @@ export class FirebaseFirestore {
 
   constructor(private af: AngularFireAuth, private firestore: AngularFirestore) {
     this.af.authState.subscribe(auth => {
+      if(!auth) return;
       this.uid = auth.uid;
       this.email = auth.email;
       this.isEmailVerified = auth.emailVerified;
+
       this.userRef = this.firestore.collection("users").doc(auth.uid);
-      // this.userRef.snapshotChanges().subscribe(res => {
-      //   // TODO: test 
-      //   if(!res.payload.exists)
-      //     this.userRef.set({name:"", chats: []})
-      //     .then(() => {
-      //       this.userRef.snapshotChanges().unsubscribe()
-      //     });
-      // });
+      this.userRef.snapshotChanges().subscribe(action => {
+        if(action.payload.exists === false) {
+          // console.log("USER DOEST NOT EXISTS ON FIRESTORE ");
+          // console.log("SO CREATING USER ");
+          this.userRef.set(this.user)
+        }
+      })
       this.userRef.valueChanges().subscribe(res => {
         this.user = res;
         this.isLoading = false;
         this.onGetUserData.next(true);
-      }, err => console.log(err))
+      }, console.error);
     });
   }
 
-  getUserData() {
-    this.onGetUserData.next(true);
-  }
+  getUserData = () => this.onGetUserData.next(true);
+  updateData = (data) => this.userRef.update(data);
+  updateChats = (chats) => this.userRef.update({chats});
 
-  updateData(data) {
-    this.userRef.update(data);
-  }
+  // updateFirestore(data) {
+  //   this.userRef.update(data) {
 
-  updateChats(data) {
-    this.userRef.update({chats:data});
-  }
-  
+  //   }
+  // }
 }

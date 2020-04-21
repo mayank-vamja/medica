@@ -22,17 +22,15 @@ export class AccountComponent implements OnInit {
   isLoading: boolean = true;
 
   constructor(private ref: ChangeDetectorRef, public firestore: FirebaseFirestore){
-    this.firestore.onGetUserData.subscribe(user => {
-      this.dob = this.firestore.user.birthdate;
-      this.gender = this.firestore.user.gender;
-      this.name = this.firestore.user.name;
-      this.profilePictureSrc = this.firestore.user.profilePicture;
-      this.crop.bind({ url: this.profilePictureSrc });
+    this.firestore.onGetUserData.subscribe(received => {
+      if(!this.firestore.user) return;
+      let { birthdate, gender, name, profilePicture } = this.firestore.user;
+      if(birthdate.length) this.dob = birthdate;
+      if(gender.length) this.gender = gender;
+      if(name.length) this.name = name;
+      if (profilePicture.length) this.profilePictureSrc = profilePicture;
+      this.crop.bind({ url: this.profilePictureSrc }).catch(err => {});;
       this.isLoading = false;
-      // if (this.firestore.user.birthdate && this.firestore.user.birthdate.length)
-      // if (this.firestore.user.gender && this.firestore.user.gender.length)
-      // if (this.firestore.user.name)
-      // if (this.firestore.user.profilePicture)
     }, err => {
       this.isLoading = false;
     })
@@ -55,7 +53,6 @@ export class AccountComponent implements OnInit {
     let age = currentYear - yearOfBirth;
     let isAdult = age >= 18;
     this.firestore.updateData({birthdate: this.dob, yearOfBirth, isAdult});
-    // this.ref.detectChanges();
   }
 
   changeGender(val: string) {
@@ -72,21 +69,18 @@ export class AccountComponent implements OnInit {
 
   enableEditName(isEnabled) {
     this.isReadOnly = !isEnabled;
-    console.log(this.isReadOnly);
     this.ref.detectChanges();
   }
 
   openDatePicker(dobPicker: any) {
     dobPicker.open();
-    // this.ref.detectChanges();
   }
 
   imageSelected(event) {
-    console.log(event.target.files[0]);
     this.crop.bind({
       url: URL.createObjectURL(event.target.files[0]),
       points: [77, 469, 280, 739]
-    });
+    }).catch(err => {});
   }
 
   updateImage() {

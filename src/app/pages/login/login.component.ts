@@ -26,15 +26,12 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.loginForm);
     if(this.loginForm.valid) {
       let email = this.loginForm.value.email;
       let password = this.loginForm.value.password;
       this.af.signInWithEmailAndPassword(email, password).then(success => {
         this.router.navigateByUrl("/");
-      }).catch(err => {
-        console.log(err);
-      })
+      }).catch(console.error)
     }
   }
 
