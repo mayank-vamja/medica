@@ -50,11 +50,11 @@ import { LoaderComponent } from './common/loader/loader.component';
     MatNativeDateModule
   ],
   providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: ApiMedicInterceptor,
-    //   multi: true
-    // }
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiMedicInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent],
 })
