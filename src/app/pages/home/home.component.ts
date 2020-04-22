@@ -28,11 +28,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit(): void {
     this.queryForm = new FormGroup({ query: new FormControl(null, Validators.required) });
-    this.api.generateToken();
-    // let lsToken = localStorage.getItem("token");
-    // if (!(lsToken && lsToken.length > 0)) {
-    //   this.api.generateToken();
-    // }
     this.chat.initializeAutocomplete(this.chat.autocomplete);
     
     this.chat.onChange.subscribe(changed => {
